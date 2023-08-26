@@ -1,0 +1,197 @@
+#include<stdio.h>
+#include<stdlib.h>
+int v;
+struct node
+{
+int data;
+struct node *next;
+};
+struct node *head=NULL, *new,*h,*e;
+int count = 0;
+void create()
+{
+new=(struct node *)malloc(sizeof(struct node));
+printf("\n Enter the value to the node:");
+scanf("%d",&v);
+new->data=v;
+new->next=NULL;
+}
+void insbeg()
+{
+create();
+if(head==NULL)
+{
+head=new;
+count++;
+}
+else
+{
+new->next=head;
+head=new;
+count++;
+}
+printf("\n Node is inserted");
+}
+void insend()
+{
+create();
+if(head==NULL)
+{
+head=new;
+count++;
+}
+else
+{
+h=head;
+while(h->next!=NULL)
+{
+h=h->next;
+}
+h->next=new;
+count++;
+}
+printf("\n node inserted");
+}
+void display()
+{
+h=head;
+printf("\n Elements are:");
+while(h != NULL)
+{
+printf("\t %d", h -> data);
+h = h -> next;
+}
+}
+void inspos()
+{
+int pos,l;
+printf("\n Enter the position(starts from 1):");
+scanf("%d",&pos);
+if(pos==1)
+{
+insbeg();
+}
+else if(pos<=count+1)
+{
+create();
+h=head;
+for(l=1;l<pos-1;l++)
+{
+h=h->next;
+}
+new->next=h->next;
+h->next=new;
+count++;
+}
+else
+{
+printf("\n Entered position is over the limit of linked list");
+}
+}
+void delbeg()
+{
+if(head==NULL)
+{
+printf("\n List is empty");
+}
+else
+{
+struct node *t=head;
+head=head->next;
+free(t);
+count--;
+}
+printf("\n First element is deleted");
+}
+void delend()
+{
+if(head==NULL)
+{
+printf("\n List is empty");
+}
+else
+{
+h=head;
+while(h->next!=NULL)
+{
+e=h;
+h=h->next;
+}
+e->next=NULL;
+free(h);
+count--;
+}
+printf("\n Last element is deleted");
+}
+void delpos()
+{
+int pos,i;
+printf("\n Enter the position of element to be deleted:");
+scanf("%d",&pos);
+if(head==NULL)
+{
+printf("\n List is empty");
+}
+else if(pos==1)
+{
+delbeg();
+}
+else if(pos<=count)
+{
+h=head;
+for(i=1;i<=pos-1;i++)
+{
+e=h;
+h=h->next;
+}
+e->next=h->next;
+free(h);
+count--;
+printf("\n Element in the position is deleted");
+}
+else
+{
+printf("\n Invalid position");
+}
+}
+int main()
+{
+int ch;
+do
+{
+printf("\n 1.Insertion to begining \n 2.Insertion to end \n 3.Insetion to a particular position \n 4.Deletion from begining \n 5.Deletion from end \n 6.Deletion from a particular position \n 7.Display\n 8.Exit ");
+printf("\n Enter your choice:");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+insbeg();
+break;
+case 2:
+insend();
+break;
+case 3:
+inspos();
+break;
+case 4:
+delbeg();
+break;
+case 5:
+delend();
+break;
+case 6:
+delpos();
+break;
+case 7:
+display();
+break;
+case 8:
+exit(0);
+break;
+default:
+printf("\n invalid choice");
+}
+}
+while(ch!=8);
+return 0;
+}
