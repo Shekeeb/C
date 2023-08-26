@@ -1,0 +1,73 @@
+#include<stdlib.h>
+int stack[5];
+int top=-1;
+void push()
+{
+int p;
+if(top==4)
+{
+printf("Overflow");
+}
+else
+{
+printf("Enter the value to be pushed");
+scanf("%d",&p);
+top++;
+stack[top]=p;
+}
+}
+void pop()
+{
+if(top==-1)
+{
+printf("Empty");
+}
+PROGRAM NO:3
+AIM:- PROGRAM TO IMPLEMENT STACK USING ARRAY
+Concept:- STACK
+Description:- Stack is a linear data structure which allows LIFO principle and allows insertion and deketion operation from the top of the
+stack
+
+else
+{
+printf("Popped%d\n",stack[top]);
+top--;
+}
+}
+void display()
+{
+int i;
+for(i=0;i<=top;i++)
+{
+printf("%d\t",stack[i]);
+}
+}
+int main()
+{
+int ch;
+while(1)
+{
+printf("1.Push\n2.Pop\n3.Display\n4.Exit");
+printf("\nEnter your choice:");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+push();
+break;
+case 2:
+pop();
+break;
+case 3:
+display();
+break;
+case 4:
+exit(0);
+break;
+
+default:
+printf("Wrong choice");
+break;
+}
+}
+}
