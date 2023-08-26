@@ -1,0 +1,59 @@
+#include<stdio.h>
+int main()
+{
+int a[10],b[20],c[30],i,j,k,m,n,l;
+printf("Enter the size of first array:");
+scanf("%d",&m);
+printf("Enter the elements of first array:");
+for(i=0;i<m;i++)
+{
+scanf("%d",&a[i]);
+}
+printf("Enter the size of second array:");
+scanf("%d",&n);
+printf("Enter the elements of second array:");
+for(j=0;j<n;j++)
+{
+scanf("%d",&b[j]);
+}
+i = j = k = 0;
+l=m+n;
+for(k=0;k<l;k++)
+{
+if(i<m && j<n)
+{
+PROGRAM NO:2
+AIM:- MERGE TWO SORTED ARRAYS AND STORE IN A THIRD ARRAY
+Concept:- ARRAY
+Description:- An array is a collection of elements of the same type placed in contiguous memory locations that can be individually referenced
+by using an index to a unique identifier.
+
+if(a[i]<b[j])
+{
+c[k]=a[i];
+i++;
+}
+else
+{
+c[k]=b[j];
+j++;
+}
+}
+else if(i>=m)
+{
+c[k]=b[j];
+j++;
+}
+else
+{
+c[k]=a[i];
+i++;
+}
+}
+printf("Merged array is");
+for(k=0;k<l;k++)
+{
+printf("\t %d",c[k]);
+}
+return 0;
+}
