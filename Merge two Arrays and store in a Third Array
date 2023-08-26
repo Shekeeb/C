@@ -22,12 +22,6 @@ for(k=0;k<l;k++)
 {
 if(i<m && j<n)
 {
-PROGRAM NO:2
-AIM:- MERGE TWO SORTED ARRAYS AND STORE IN A THIRD ARRAY
-Concept:- ARRAY
-Description:- An array is a collection of elements of the same type placed in contiguous memory locations that can be individually referenced
-by using an index to a unique identifier.
-
 if(a[i]<b[j])
 {
 c[k]=a[i];
