@@ -1,0 +1,102 @@
+#include<stdio.h>
+void input();
+void inter();
+void unio();
+void acomp();
+void bcomp();
+int n=9,a[9],b[9];
+int main()
+{
+input();
+inter();
+unio();
+acomp();
+bcomp();
+}
+void input()
+{
+int an,ap;
+printf("Enter the size of set A:");
+scanf("%d",&an);
+printf("Enter A element:");
+for(int i=1;i<an+1;i++)
+{
+scanf("%d",&ap);
+a[ap]=1;
+}
+printf("Bit String Representation of set A:");
+for(int i=1;i<n+1;i++)
+{
+printf("%d",a[i]);
+}
+int bn,bp;
+printf("\nEnter the size of set B:");
+scanf("%d",&bn);
+printf("Enter B element:");
+for(int i=1;i<bn+1;i++)
+{
+scanf("%d",&bp);
+b[bp]=1;
+}
+printf("Bit String Representation of set B:");
+for(int i=1;i<n+1;i++)
+{
+printf("%d",b[i]);
+}
+}
+void inter()
+{
+printf("\nIntersection:");
+for(int i=1;i<=n;i++)
+{
+if(a[i]&&b[i])
+{
+printf("1");
+}
+else
+printf("0");
+}
+}
+void unio()
+{
+printf("\nUnion:");
+for(int i=1;i<=n;i++)
+{
+if(a[i]||b[i])
+{
+printf("1");
+}
+else
+printf("0");
+}
+}
+void acomp()
+{
+printf("\nA Complement:");
+for(int i=1;i<=n;i++)
+{
+if(!a[i])
+{
+printf("1");
+}
+else
+{
+printf("0");
+}
+}
+}
+void bcomp()
+{
+printf("\nB Complement:");
+for(int i=1;i<=n;i++)
+{
+if(!b[i])
+{
+printf("1");
+}
+else
+{
+printf("0");
+}
+}
+}
