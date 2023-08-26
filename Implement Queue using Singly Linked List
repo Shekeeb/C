@@ -1,0 +1,105 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int data;
+struct node *next;
+};
+int count=0;
+struct node *head=NULL,*new,*h,*g;
+void create()
+{
+int x;
+new=(struct node*)malloc(sizeof(struct node));
+if(new==NULL)
+{
+printf("\nNo Space Available!\n");
+}
+else
+{
+printf("\nEnter the value to be inserted: ");
+scanf("%d",&x);
+new->data=x;
+new->next=NULL;
+}
+}
+void ins_end()
+{
+if(head==NULL)
+{
+create();
+head=new;
+count++;
+}
+else
+{
+create();
+h=head;
+while(h->next!=NULL)
+{
+h=h->next;
+}
+h->next=new;
+count++;
+}
+}
+void del_beg()
+{
+if(head==NULL)
+{
+printf("\nLinked List Is Empty!\n");
+}
+else
+{
+h=head;
+printf("\nElement Deleted: %d\n",h->data);
+head=h->next;
+free(h);
+count--;
+}
+}
+void disp()
+{
+h=head;
+if(h==NULL)
+{
+printf("\nLinked List is Empty!");
+}
+else
+{
+printf("\nLinked List: ");
+while(h!=NULL)
+{
+printf("%d ",h->data);
+h=h->next;
+}
+}
+printf("\n");
+}
+int main()
+{
+int op;
+while(1)
+{
+printf("\n1.Insert\n2.Delete\n3.Display\n4.Exit\n");
+printf("Enter your option:");
+scanf("%d",&op);
+switch(op)
+{
+case 1: 
+ins_end();
+break;
+case 2: 
+del_beg();
+break;
+case 3:
+disp();
+break;
+case 4: 
+exit(0);
+default: 
+printf("\nInvalid Option!\n");
+}
+}
+return 0;
+}
