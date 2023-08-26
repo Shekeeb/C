@@ -1,0 +1,78 @@
+#include<stdio.h>
+#include<stdlib.h>
+int rear=-1,front=-1,max=3,queue[3];
+void enqueue()
+{
+int p;
+if(front==0 && rear==max-1)
+{
+printf("queue overflow\n");
+}
+else
+{
+if(front==-1)
+{
+front=front+1;
+}
+printf("enter the value:");
+scanf("%d",&p);
+rear=(rear+1)%max;
+queue[rear]=p;
+}
+}
+void dequeue()
+{
+if(front==-1)
+{
+printf("queue is empty\n");
+}
+else
+{
+if(front==rear)
+{
+front=rear=-1;
+}
+else
+{
+front=(front+1)%max;
+}
+}
+}
+void display()
+{
+int i;
+if(front==-1||front>rear)
+{
+printf("queue is empty\n");
+}
+else
+{
+for(i=front;i<=rear;i++)
+{
+printf("%d\t",queue[i]);
+}
+printf("\n");
+}
+}
+int main()
+{
+int ch;
+while(1)
+{
+printf("1.enqueue\n2.display\n3.dequeue\n");
+printf("Enter your choice:");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1: enqueue();
+break;
+case 2: display();
+break;
+case 3: dequeue();
+break;
+default:printf("wrong choice");
+exit(0);
+break;
+}
+}
+}
