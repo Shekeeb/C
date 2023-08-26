@@ -19,3 +19,5 @@ max=a[i];
 }
 printf("minimum of array is :%d",min);
 printf("\n maximum of array is :%d",max);
+return 0;
+}
