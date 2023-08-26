@@ -22,12 +22,6 @@ if(top==-1)
 {
 printf("Empty");
 }
-PROGRAM NO:3
-AIM:- PROGRAM TO IMPLEMENT STACK USING ARRAY
-Concept:- STACK
-Description:- Stack is a linear data structure which allows LIFO principle and allows insertion and deketion operation from the top of the
-stack
-
 else
 {
 printf("Popped%d\n",stack[top]);
@@ -64,7 +58,6 @@ break;
 case 4:
 exit(0);
 break;
-
 default:
 printf("Wrong choice");
 break;
