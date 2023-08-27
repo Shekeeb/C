@@ -1,0 +1,295 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+int data;
+struct node *lchild, *rchild;
+};
+struct node *new, *root = NULL, *r = NULL, *counter1, *counter2;
+void create();
+void insert();
+void search(struct node *rt);
+void dsearch(struct node *rt, int dval);
+void delete();
+void preorder(struct node *rt);
+void inorder(struct node *rt);
+void postorder(struct node *rt);
+void display();
+void deletenode(struct node *rt);
+void create()
+{
+int val;
+new = (struct node *)malloc(sizeof(struct node));
+printf("Enter the data to be inserted: ");
+scanf("%d", &val);
+new -> data = val;
+new -> lchild = new -> rchild = NULL;
+}
+void insert()
+{
+create();
+if(root == NULL)
+{
+root = new;
+}
+else
+{
+search(root);
+}
+}
+void search(struct node * rt)
+{
+if(new -> data < rt -> data && rt -> lchild == NULL)
+{
+rt -> lchild = new;
+}
+else if(new -> data > rt -> data && rt -> rchild == NULL)
+{
+rt -> rchild = new;
+}
+else if(new -> data < rt -> data && rt -> lchild != NULL)
+{
+search(rt -> lchild);
+}
+else if(new -> data > rt -> data && rt -> rchild != NULL)
+{
+search(rt -> rchild);
+}
+else if(new -> data == rt -> data)
+{
+printf("\nSame value has been entered twice!!!");
+}
+else
+{
+printf("\nInvalid Input!!");
+}
+}
+void delete()
+{
+int dval;
+printf("Enter the node value to be removed: ");
+scanf("%d", &dval);
+if(root == NULL)
+{
+printf("\nThe BST is empty.");
+}
+else
+{
+dsearch(root, dval);
+}
+}
+void dsearch(struct node *rt, int dval)
+{
+if(dval == rt -> data)
+{
+deletenode(rt);
+}
+else if(dval < rt -> data && rt -> lchild != NULL)
+{
+r = rt;
+dsearch(rt -> lchild, dval);
+}
+else if(dval > rt -> data && rt -> rchild != NULL)
+{
+r = rt;
+dsearch(rt -> rchild, dval);
+}
+else
+{
+printf("\nThe value was not found in the BST!\n");
+}
+}
+void deletenode(struct node *rt)
+{
+if(r == NULL)
+{
+r = rt;
+}
+if(rt -> lchild == NULL && rt -> rchild == NULL)
+{
+if(rt == r -> lchild)
+{
+r -> lchild = NULL;
+}
+else if(rt == r -> rchild)
+{
+r -> rchild = NULL;
+}
+else
+{
+printf("\nInvalid Process");
+}
+free(rt);
+}
+else if(rt -> lchild != NULL && rt -> rchild == NULL)
+{
+if(rt == r)
+{
+root = rt -> lchild;
+}
+else if(rt == r -> lchild)
+{
+r -> lchild = rt -> lchild;
+}
+else if(rt == r -> rchild)
+{
+r -> rchild = rt -> rchild;
+}
+else
+{
+printf("\nInvalid Process");
+}
+free(rt);
+}
+else if(rt -> lchild == NULL && rt -> rchild != NULL)
+{
+if(rt == r)
+{
+root = rt -> rchild;
+}
+else if(rt == r -> lchild)
+{
+r -> lchild = rt -> rchild;
+}
+else if(rt == r -> rchild)
+{
+r -> rchild = rt -> rchild;
+}
+else
+{
+printf("\nInvalid Process");
+}
+free(rt);
+}
+else if(rt -> lchild != NULL & rt -> rchild != NULL)
+{
+counter1 = rt -> rchild;
+if(counter1 -> rchild != NULL)
+{
+counter2 = rt;
+while(counter1 -> lchild != NULL)
+{
+counter2 = counter1;
+counter1 = counter1 -> lchild;
+}
+rt -> data = counter1 -> data;
+if(counter1 -> rchild != NULL)
+{
+counter2 -> rchild = counter1 -> rchild;
+}
+if(counter2 != rt)
+{
+counter2 -> lchild = NULL;
+}
+free(counter1);
+}
+else
+{
+rt -> data = counter1 -> data;
+if(counter1 -> lchild != NULL)
+{
+rt -> rchild = counter1 -> lchild;
+}
+else
+{
+rt -> rchild = NULL;
+}
+free(counter1);
+}
+}
+else
+{
+printf("\nInvalid Process. The element could not be deleted.");
+}
+}
+void display()
+{
+int choice;
+printf("\n1. Preorder Traversal");
+printf("\n2. Inorder Traversal");
+printf("\n3. Postorder Traversal");
+printf("\nEnter your choice: ");
+scanf("%d", &choice);
+switch(choice)
+{
+case 1:
+printf("\nPreorder Traversal:\n");
+preorder(root);
+printf("END\n");
+break;
+case 2:
+printf("\nInorder Traversal:\n");
+inorder(root);
+printf("END\n");
+break;
+case 3:
+printf("\nPostorder Traversal:\n");
+postorder(root);
+printf("END\n");
+break;
+default:
+printf("Display Exited!!!!");
+break;
+}
+}
+void preorder(struct node *rt)
+{
+if(rt != NULL)
+{
+printf("%d -> ", rt -> data);
+preorder(rt -> lchild);
+preorder(rt -> rchild);
+}
+}
+void inorder(struct node *rt)
+{
+if(rt != NULL)
+{
+inorder(rt -> lchild);
+printf("%d -> ", rt -> data);
+inorder(rt -> rchild);
+}
+}
+void postorder(struct node *rt)
+{
+if(rt != NULL)
+{
+postorder(rt -> lchild);
+postorder(rt -> rchild);
+printf("%d -> ", rt -> data);
+}
+}
+int main()
+{
+int choice;
+while(1)
+{
+printf("\nBinary Search Tree Operations");
+printf("\n1. Insertion Operation");
+printf("\n2. Deletion Operation");
+printf("\n3. Display Operation");
+printf("\nEnter your choice: ");
+scanf("%d", &choice);
+switch(choice)
+{
+case 1:
+insert();
+break;
+case 2:
+delete();
+break;
+case 3:
+if(root == NULL)
+{
+printf("\nThe BST is empty.\n");
+}
+else
+{
+display();
+}
+break;
+default:
+printf("Program Exited!!");
+exit(0);
+}
+}
+}
